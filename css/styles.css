@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #ada9a9;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+.container-info{
+    padding-left: 650px;
+}
+input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #ccff99;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #99cc66;
+}
+
+.game-info {
+    background-color: #a3b8ce;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.game-board {
+    display: flex;
+    background-color: #7c93ab;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.player-info {
+    background-color: #8175c1;
+    padding: 10px;
+    border-radius: 15px;
+    width: 340px;
+    text-align: left;
+    margin-right: 160px;
+    color:#ffffff;
+}
+
+.word-display {
+    background-color: #ffffff;
+    border: 2px solid #000;
+    border-radius: 10px;
+    width: 250px;
+    height: 200px;
+}
+
+.alphabet {
+    margin-top: 20px;
+}
+
+.alphabet button {
+    background-color: #ffff99;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.alphabet button {
+    border-color: #0f0f0f;
+    background-color: #99cc66;
+}
+/* .alphabet button {
+    border-color: #ff0000;
+    background-color: #99cc66;
+    color: #ff0000;
+} */
