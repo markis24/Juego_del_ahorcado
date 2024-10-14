@@ -21,9 +21,16 @@ body {
     margin-bottom: 20px;
 }
 .container-info{
-    padding-left: 650px;
+    padding-left: 20px;
+    margin-bottom: 20px;
 }
 input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+input[type="password"] {
     width: 200px;
     padding: 10px;
     border-radius: 5px;
@@ -94,8 +101,3 @@ button:hover {
     border-color: #0f0f0f;
     background-color: #99cc66;
 }
-/* .alphabet button {
-    border-color: #ff0000;
-    background-color: #99cc66;
-    color: #ff0000;
-} */
