@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Ahorcado</title>
+    <title>Juego del Ahorcado</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
         <div class="input-container">
             <div class="container-info">
-            <input type="text" placeholder="Introdueix una paraula" id="paraulaSecreta">
-            <button id="comenzarBtn">Començar partida</button>
-        </div>
+            <input type="password" id="paraulaSecreta" name="paraulaSecreta" placeholder="Introduce una palabra">
+            <button onclick="mostrarParaula()">Mostrar</button>
+            <button onclick="comenzarPartida()">Comenzar partida</button>
         </div>
 
+        <!-- Información del juego -->
         <div class="game-info">
-            <h1>Començar partida</h1>
+            <h1>Començar partida</h1>        
         </div>
 
+        <!-- Tablero del juego -->
         <div class="game-board">
             <div class="player-info">
                 <h2>JUGADOR 1</h2>
@@ -37,18 +39,12 @@
             </div>
         </div>
 
-        <div class="alphabet">
-            <!-- Botones de letras -->
-            <button id="botoA" onclick="jugarLletra(this)">A</button>
-            <button>B</button>
-            <button>C</button>
-            <button>D</button>
-            <!-- Añade el resto de las letras de la A a la Z -->
+        <!-- Contenedor para los botones del abecedario -->
+        <div id="alphabet" class="alphabet">
+            <!-- Aquí se generarán los botones para cada letra del abecedario -->
         </div>
     </div>
 
-
-
-    <script src="js/penjat.js"></script>
+    <script src="js/code.js"></script>
 </body>
 </html>
