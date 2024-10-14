@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Ahorcado</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="input-container">
+            <div class="container-info">
+            <input type="text" placeholder="Introdueix una paraula" id="paraulaSecreta">
+            <button id="comenzarBtn">Començar partida</button>
+        </div>
+        </div>
+
+        <div class="game-info">
+            <h1>Començar partida</h1>
+        </div>
+
+        <div class="game-board">
+            <div class="player-info">
+                <h2>JUGADOR 1</h2>
+                <p>PUNTS PARTIDES ACTUALS:</p>
+                <p>0</p>
+                <p>TOTAL PARTIDES:</p>
+                <p>0</p>
+                <p>PARTIDES GUANYADES:</p>
+                <p>0</p>
+                <p>PARTIDA AMB MÉS PUNTS:<br>07/10/2024 15:45 - 10 PUNTS</p>                
+            </div>
+
+            <div class="word-display">
+                <!-- Aquí se mostrarán las imagenes del ahorcado -->
+            <img id="img_penjat" src="img_penjat/penjat_4.jpg" width="200px">
+            </div>
+        </div>
+
+        <div class="alphabet">
+            <!-- Botones de letras -->
+            <button id="botoA" onclick="jugarLletra(this)">A</button>
+            <button>B</button>
+            <button>C</button>
+            <button>D</button>
+            <!-- Añade el resto de las letras de la A a la Z -->
+        </div>
+    </div>
+
+
+
+    <script src="js/penjat.js"></script>
+</body>
+</html>
