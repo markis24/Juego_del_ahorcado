@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego del Ahorcado</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="input-container">
-            <div class="container-info">
-            <input type="password" id="paraulaSecreta" name="paraulaSecreta" placeholder="Introduce una palabra">
-            <button onclick="mostrarParaula()">Mostrar</button>
-            <button onclick="comenzarPartida()">Comenzar partida</button>
-        </div>
-
-        <!-- Información del juego -->
-        <div class="game-info">
-            <h1>Començar partida</h1>        
-        </div>
-
-        <!-- Tablero del juego -->
-        <div class="game-board">
-            <div class="player-info">
-                <h2>JUGADOR 1</h2>
-                <p>PUNTS PARTIDES ACTUALS:</p>
-                <p>0</p>
-                <p>TOTAL PARTIDES:</p>
-                <p>0</p>
-                <p>PARTIDES GUANYADES:</p>
-                <p>0</p>
-                <p>PARTIDA AMB MÉS PUNTS:<br>07/10/2024 15:45 - 10 PUNTS</p>                
+    <div class="contenedor">
+        <div class="contenedor-entrada">
+            <div class="contenedor-informacion">
+                <input type="password" id="palabraSecreta" name="palabraSecreta" placeholder="Introduce una palabra">
+                <img class="eye" width="24px" src="icon/eye-open.png" onclick="mostrarPalabra()"></button>
+                <button class="comenzarPartida" onclick="comenzarPartida()">Comenzar partida</button>
             </div>
 
-            <div class="word-display">
-                <!-- Aquí se mostrarán las imagenes del ahorcado -->
-            <img id="img_penjat" src="img_penjat/penjat_4.jpg" width="200px">
+            <!-- Información del juego -->
+            <div class="informacion-juego">
+                <h1>Comenzar partida</h1>
+            </div>
+
+            <!-- Tablero del juego -->
+            <div class="tablero-juego">
+                <div class="informacion-jugador">
+                    <h2>JUGADOR 1</h2>
+                    <p>PUNTOS PARTIDAS ACTUALES:</p>
+                    <p>0</p>
+                    <p>TOTAL PARTIDAS:</p>
+                    <p>0</p>
+                    <p>PARTIDAS GANADAS:</p>
+                    <p>0</p>
+                    <p>PARTIDA CON MÁS PUNTOS:<br>07/10/2024 15:45 - 10 PUNTOS</p>
+                </div>
+                <div class="img-ahorcado">
+                    <!-- Aquí se mostrarán las imágenes del ahorcado -->
+                    <img id="img_ahorcado" src="img_penjat/penjat_4.jpg" width="200px">
+                </div>
+            </div>
+
+            <!-- Contenedor para los botones del abecedario -->
+            <div id="alfabeto" class="alfabeto">
+                <!-- Aquí se generarán los botones para cada letra del abecedario -->
             </div>
         </div>
 
-        <!-- Contenedor para los botones del abecedario -->
-        <div id="alphabet" class="alphabet">
-            <!-- Aquí se generarán los botones para cada letra del abecedario -->
-        </div>
-    </div>
-
-    <script src="js/code.js"></script>
+        <script src="js/code.js"></script>
 </body>
+
 </html>

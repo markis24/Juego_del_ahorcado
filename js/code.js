@@ -1,66 +1,89 @@
+// Coloca aquí el JavaScript proporcionado
+const objetoEntrada = document.getElementById("palabraSecreta");
+const botonComenzar = document.getElementById("comenzarPartida");
+let botonesAlfabeto = []; // Variable global para almacenar los botones
+let jugadasFallidas = 0;
+let numeroPartidas = 0;
+let maxNumeroPartidas = 10;
+let partidasGanadas = 0;
+let puntosActuales = 0;
+let puntosMaximos = 0;
+let totalPartidas = 0;
+let palabrasGuardadas = []; // Array para guardar las palabras
 
-        // Coloca aquí el JavaScript proporcionado
-        const inputObject = document.getElementById("paraulaSecreta");
-        const comenzarBtn = document.getElementById("comenzarBtn");
-        let jugadaFallada = 0;
-        let palabrasGuardadas = []; // Array para guardar las palabras
+const imagenes = ["img_penjat/penjat_0.png"];
 
-        const imagenes = ["img_penjat/penjat_0.png"];
+function palabraSecreta() {
+    const palabraSecreta = document.getElementById("palabraSecreta").value;
+    const palabraArray = palabraSecreta.split("");
+    const palabraArrayAdivinar = palabraArray.map((letra) =>
+        letra === " " ? letra : "_"
+    );
+    document.getElementById("palabraAdivinar").innerHTML =
+        palabraArrayAdivinar.join(" ");
+}
+function mostrarPalabra() {
+    const img = document.querySelector("img");
+    if (objetoEntrada.type === "password") {
+        objetoEntrada.type = "text"; // Cambiar a texto para mostrar la palabra
+        img.src = "icon/eye-secret.png";
+    } else {
+        objetoEntrada.type = "password"; // Cambiar a password para ocultar
+        img.src = "icon/eye-open.png";
+    }
+}
 
-        // Generar los botones del abecedario
-        window.onload = function() {
-            const alphabetContainer = document.getElementById('alphabet');
-            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+function comenzarPartida() {
+    const palabraSecreta = objetoEntrada.value;
+    if (!palabraSecreta) {
+        alert("Por favor, escribe una palabra.");
+        return;
+    }
 
-            letters.forEach(letter => {
-                // Crear un botón para cada letra
-                const button = document.createElement('button');
-                button.innerText = letter;
-                button.id = `boto_${letter}`; // Asignar un ID único
+    if (palabraSecreta.length < 4) {
+        alert("La palabra debe tener más de 4 caracteres.");
+        return;
+    }
 
-                // Añadir el botón al contenedor
-                alphabetContainer.appendChild(button);
-            });
-        };
+    if (/\d/.test(palabraSecreta)) {
+        alert("La palabra no puede contener números.");
+        return;
+    }
 
+    palabrasGuardadas.push(palabraSecreta);
 
-        // Cambiar el texto por una imagen
-        function mostrarParaula() {
-            if (inputObject.type === "password") {
-                inputObject.type = "text"; // Cambiar a texto para mostrar la palabra
-            } else {
-                inputObject.type = "password"; // Cambiar a password para ocultar
-            }
-        }
+    // Cambiar color y habilitar los botones del alfabeto
+    botonesAlfabeto.forEach((boton) => {
+        boton.style.color = "black"; // Cambiar color a negro
+        boton.style.borderColor = "black"; // Cambiar el borde a negro
+        boton.disabled = false; // Habilitar el botón
+    });
+}
 
-        function jugarLletra(obj){
-            let lletraJugada = obj.textContent;
-            console.log(lletraJugada);
-        }
+window.onload = function () {
+    const contenedorAlfabeto = document.getElementById("alfabeto");
+    const letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-        function enviarParaula() {
-            comenzarPartida(); // Llamar a la función para manejar la palabra
-        }
+    letras.forEach((letra) => {
+        // Crear un botón para cada letra
+        const boton = document.createElement("button");
+        boton.innerText = letra;
+        boton.id = `boton_${letra}`; // Asignar un ID único
+        boton.style.color = "red"; // Cambiar el color del texto del botón a rojo (por defecto deshabilitado)
+        boton.style.borderColor = "red"; // Cambiar el color del borde del botón a rojo (por defecto deshabilitado)
+        boton.disabled = true; // Deshabilitar el botón al inicio
 
-        function comenzarPartida() {
-            const paraulaSecreta = inputObject.value;
+        // Añadir un evento de clic al botón
+        boton.addEventListener("click", function () {
+            boton.style.color = "red"; // Cambiar color a rojo cuando se presione
+            boton.style.borderColor = "red"; // Cambiar el borde a rojo
+            boton.disabled = true; // Deshabilitar el botón
+        });
 
-            if (!paraulaSecreta) {
-                alert("Por favor, escribe una palabra.");
-                return;
-            }
+        // Añadir el botón a la lista de botones
+        botonesAlfabeto.push(boton);
 
-            if (paraulaSecreta.length < 4 ) {
-                alert("La palabra debe tener más de 4 caracteres.");
-                return;
-            }
-
-            if (/\d/.test(paraulaSecreta)) {
-                alert("La palabra no puede contener números.");
-                return;
-            }
-
-            palabrasGuardadas.push(paraulaSecreta);
-
-            console.log(palabrasGuardadas);
-        }
+        // Añadir el botón al contenedor
+        contenedorAlfabeto.appendChild(boton);
+    });
+};

@@ -2,8 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: 30px;
+    margin-left: 30px;
     margin-top: 5px;
 }
 
@@ -13,31 +13,40 @@ body {
     height: 100vh;
 }
 
-.container {
+.eye{
+    margin-left: -15px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.comenzarPartida {
+    margin-left: 50px;
+}
+.contenedor {   
     text-align: center;
 }
 
-.input-container {
+
+.contenedor-informacion {
+    display: flex;
+    align-items: center;
+    justify-content: end;
     margin-bottom: 20px;
 }
-.container-info{
-    padding-left: 20px;
-    margin-bottom: 20px;
-}
+
 input[type="text"] {
-    width: 200px;
+    width: 300px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 input[type="password"] {
-    width: 200px;
+    width: 300px;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
-button {
+button  {
     padding: 10px 20px;
     background-color: #ccff99;
     border: none;
@@ -50,21 +59,21 @@ button:hover {
     background-color: #99cc66;
 }
 
-.game-info {
+.informacion-juego {
     background-color: #a3b8ce;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 20px;
 }
 
-.game-board {
+.tablero-juego {
     display: flex;
     background-color: #7c93ab;
     padding: 20px;
     border-radius: 15px;
 }
 
-.player-info {
+.informacion-jugador {
     background-color: #8175c1;
     padding: 10px;
     border-radius: 15px;
@@ -74,19 +83,20 @@ button:hover {
     color:#ffffff;
 }
 
-.word-display {
+.img-ahorcado {
     background-color: #ffffff;
     border: 2px solid #000;
     border-radius: 10px;
     width: 250px;
     height: 200px;
+    margin-left: -80px;
 }
 
-.alphabet {
+.alfabeto {
     margin-top: 20px;
 }
 
-.alphabet button {
+.alfabeto button {
     background-color: #ffff99;
     border: 2px solid #ccc;
     border-radius: 5px;
@@ -97,7 +107,10 @@ button:hover {
     cursor: pointer;
 }
 
-.alphabet button {
+.alfabeto button {
     border-color: #0f0f0f;
     background-color: #99cc66;
 }
+input:disabled, button:disabled {
+    cursor: not-allowed;
+  }
