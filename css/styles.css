@@ -2,26 +2,42 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    margin-right: 30px;
-    margin-left: 30px;
-    margin-top: 5px;
 }
 
 body {
     font-family: 'Courier New', Courier, monospace;
-    background-color: #ada9a9;
-    height: 100vh;
+    background-color: #d3d3d3;
 }
 
-.eye{
-    margin-left: -15px;
-    margin-right: 5px;
+.eye {
+    margin-left: 20px;
+    margin-right: 15px;
     cursor: pointer;
 }
-.comenzarPartida {
-    margin-left: 50px;
+.eye-btn {
+    background-color: #b0b0b0;   /* Fondo gris */
+    border: 2px solid #000000;                /* Sin borde */
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    cursor: pointer;             /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease;  /* Efecto suave al hacer hover */
 }
-.contenedor {   
+
+.eye-btn:hover {
+    background-color: #a0a0a0;   /* Fondo gris más oscuro al pasar el mouse */
+}
+
+.eye-btn img {
+    display: block;              /* Asegura que la imagen se centre */
+}
+
+
+
+.contenedor {
+    width: 80%;
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -30,7 +46,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: end;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 input[type="text"] {
@@ -39,6 +56,7 @@ input[type="text"] {
     border-radius: 5px;
     border: 1px solid #ccc;
 }
+
 input[type="password"] {
     width: 300px;
     padding: 10px;
@@ -46,17 +64,18 @@ input[type="password"] {
     border: 1px solid #ccc;
 }
 
-button  {
+
+#comenzarPartida {
     padding: 10px 20px;
     background-color: #ccff99;
-    border: none;
+    border: 2px solid #000000;
     border-radius: 5px;
     cursor: pointer;
     margin-left: 10px;
 }
 
-button:hover {
-    background-color: #99cc66;
+#comenzarPartida:hover {
+    background-color: #8dd644;
 }
 
 .informacion-juego {
@@ -74,31 +93,76 @@ button:hover {
 }
 
 .informacion-jugador {
-    background-color: #8175c1;
+    background-color: #726b9b;
     padding: 10px;
     border-radius: 15px;
     width: 340px;
     text-align: left;
     margin-right: 160px;
-    color:#ffffff;
+    color: #ffffff;
 }
 
-.img-ahorcado {
-    background-color: #ffffff;
-    border: 2px solid #000;
+.titulo {
+    font-size: 36px;
+    background-color: #bbc6ee;
+    /* Light blue/purple */
+    padding: 20px;
+    margin-top: 10px;
     border-radius: 10px;
-    width: 250px;
-    height: 200px;
-    margin-left: -80px;
 }
 
-.alfabeto {
+.tablero {
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
 }
 
+.jugador {
+    width: 25%;
+    background-color: #f2b6b6;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    font-size: 16px;
+    border: 2px solid #000000;
+
+}
+
+.jugador h3 {
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+#jugador2 {
+    background-color: #bee8d8;
+}
+
+.tablero-central {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tablero-juego {
+    width: 220px;
+    height: 210px;
+    border: 3px solid #000;
+    background-color: #fff;
+}
+
+
+.alfabeto {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .alfabeto button {
-    background-color: #ffff99;
-    border: 2px solid #ccc;
+    border: 2px solid;
     border-radius: 5px;
     padding: 10px;
     margin: 5px;
@@ -109,8 +173,10 @@ button:hover {
 
 .alfabeto button {
     border-color: #0f0f0f;
-    background-color: #99cc66;
+    background-color: #a1f189;
 }
-input:disabled, button:disabled {
+
+input:disabled,
+button:disabled {
     cursor: not-allowed;
-  }
+}
