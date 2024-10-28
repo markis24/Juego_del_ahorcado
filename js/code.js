@@ -6,7 +6,7 @@ let botonesAlfabeto = []; // Almacena los botones de letras para el juego
 let palabra = ""; // Palabra secreta para adivinar
 let puntosActuales = 0; // Puntos actuales del jugador
 let totalPartidas = 0; // Total de partidas jugadas
-let partidasGanadas = 0; // Total de partidas ganadas
+let ganadas = 0; // Total de partidas ganadas
 let maxPuntos = 0; // Puntaje máximo alcanzado
 let recordPartida = ""; // Formato: "día/hora - puntos" para el récord de la partida
 
@@ -145,10 +145,18 @@ function actualizarUIJugador() {
         jugador2Div.style.backgroundColor = "green";
     }
 }
+// Actualizar estadísticas después de cada partida
 function actualizarEstadisticas(jugador) {
-    // Actualiza la cantidad total de partidas para el jugador actual
+    // Incrementa el total de partidas jugadas por el jugador actual
     jugadores[jugador].totalPartidas++;
     document.getElementById(`totalPartidasJugador${jugador + 1}`).textContent = jugadores[jugador].totalPartidas;
+
+    // Actualiza partidas ganadas
+    document.getElementById(`ganadasJugador${jugador + 1}`).textContent = jugadores[jugador].ganadas;
+
+    // Calcula y muestra el porcentaje de partidas ganadas
+    const porcentajeGanadas = ((jugadores[jugador].ganadas / jugadores[jugador].totalPartidas) * 100).toFixed(2);
+    document.getElementById(`porcentajeGanadasJugador${jugador + 1}`).textContent = `${porcentajeGanadas}%`;
 
     // Si los puntos actuales son el máximo alcanzado, actualiza el récord de puntos
     if (jugadores[jugador].puntos > jugadores[jugador].maxPuntos) {
@@ -160,16 +168,12 @@ function actualizarEstadisticas(jugador) {
         document.getElementById(`recordPartidaJugador${jugador + 1}`).textContent = jugadores[jugador].recordPartida;
     }
 
-    // Actualiza las partidas ganadas
-    document.getElementById(`ganadasJugador${jugador + 1}`).textContent = jugadores[jugador].ganadas;
-
     // Reinicia los puntos y aciertos consecutivos para ambos jugadores para la siguiente partida
     jugadores[0].puntos = 0;
     jugadores[1].puntos = 0;
     aciertosConsecutivos = [0, 0];
     intentosFallidos = 0; // Restablece los intentos fallidos
 }
-
 
 // Muestra la palabra oculta en el título del juego usando guiones bajos para letras no adivinadas
 function mostrarPalabraOculta() {
@@ -188,11 +192,11 @@ function verificarVictoria() {
         contenedorTitulo.style.backgroundColor = "green";
         jugadores[turnoActual].ganadas++; // Incrementa partidas ganadas para el jugador actual
         actualizarEstadisticas(turnoActual); // Actualiza estadísticas
-        iniciarNuevaPartida(); // Inicia una nueva partida tras una victoria
+        reiniciarPartida(); // Inicia una nueva partida tras una victoria
     } else if (intentosFallidos >= maxIntentos) { // El jugador ha perdido
         titulo.textContent = `Perdiste. La palabra era: ${palabra}`;
         contenedorTitulo.style.backgroundColor = "red";
-        iniciarNuevaPartida(); // Inicia una nueva partida tras una derrota
+        reiniciarPartida(); // Inicia una nueva partida tras una victoria
     } else {
         titulo.style.color = "black"; // Mantiene el color si la partida continúa
     }
@@ -229,12 +233,6 @@ function siguienteImagen() {
 }
 
 
-
-// Función para iniciar una nueva partida
-function iniciarNuevaPartida() {
-    // Esta función ahora solo reinicia la partida sin incrementar el total de partidas
-    reiniciarPartida(); // Llama a la función que reinicia los valores de la partida
-}
 
 function reiniciarPartida() {
     // Llamando al id del elemento HTML para habilitar 
