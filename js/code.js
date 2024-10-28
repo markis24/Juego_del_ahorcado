@@ -145,11 +145,10 @@ function actualizarUIJugador() {
         jugador2Div.style.backgroundColor = "green";
     }
 }
-// Actualiza las estadísticas de un jugador tras finalizar la partida
 function actualizarEstadisticas(jugador) {
-    // Actualiza la cantidad total de partidas y las partidas ganadas para el jugador actual en el DOM
+    // Actualiza la cantidad total de partidas para el jugador actual
+    jugadores[jugador].totalPartidas++;
     document.getElementById(`totalPartidasJugador${jugador + 1}`).textContent = jugadores[jugador].totalPartidas;
-    document.getElementById(`ganadasJugador${jugador + 1}`).textContent = jugadores[jugador].ganadas;
 
     // Si los puntos actuales son el máximo alcanzado, actualiza el récord de puntos
     if (jugadores[jugador].puntos > jugadores[jugador].maxPuntos) {
@@ -160,6 +159,9 @@ function actualizarEstadisticas(jugador) {
         // Muestra el récord en el elemento correspondiente del DOM
         document.getElementById(`recordPartidaJugador${jugador + 1}`).textContent = jugadores[jugador].recordPartida;
     }
+
+    // Actualiza las partidas ganadas
+    document.getElementById(`ganadasJugador${jugador + 1}`).textContent = jugadores[jugador].ganadas;
 
     // Reinicia los puntos y aciertos consecutivos para ambos jugadores para la siguiente partida
     jugadores[0].puntos = 0;
@@ -176,37 +178,25 @@ function mostrarPalabraOculta() {
 }
 
 
-// Verifica si el jugador ha ganado o perdido tras un intento de adivinanza
+// Modifica la función de verificación para que solo llame a iniciarNuevaPartida al empezar
 function verificarVictoria() {
-    const titulo = document.getElementById("tituloJuego"); // Referencia al título del juego en el DOM
-    const contenedorTitulo = document.getElementsByClassName("contenedor-titulo")[0]; // Referencia al contenedor del título
+    const titulo = document.getElementById("tituloJuego");
+    const contenedorTitulo = document.getElementsByClassName("contenedor-titulo")[0];
 
-    // Condición de victoria: si no hay guiones en letrasAdivinadas, significa que la palabra ha sido adivinada completamente
-    if (!letrasAdivinadas.includes("_")) {
-        titulo.textContent = `¡Ganaste! La palabra era: ${palabra}`; // Muestra mensaje de victoria
-        contenedorTitulo.style.backgroundColor = "green"; // Cambia el fondo a verde indicando victoria
-        actualizarEstadisticas(turnoActual); // Actualiza estadísticas del jugador actual
-        reiniciarPartida(); // Reinicia la partida para el próximo juego
-
-        // Determina el jugador ganador entre ambos basándose en el puntaje
-        const ganador = jugadores[0].puntos >= jugadores[1].puntos ? 0 : 1;
-        jugadores[ganador].totalPartidas++; // Incrementa las partidas jugadas por el ganador
-        jugadores[ganador].ganadas++; // Incrementa las partidas ganadas por el ganador
-
-    // Condición de derrota: si el número de intentos fallidos supera el máximo permitido
-    } else if (intentosFallidos >= maxIntentos) {
-        titulo.textContent = `Perdiste. La palabra era: ${palabra}`; // Muestra mensaje de derrota
-        contenedorTitulo.style.backgroundColor = "red"; // Cambia el fondo a rojo indicando derrota
-        reiniciarPartida(); // Reinicia la partida para el próximo juego
-
-        // Resetea los puntos de ambos jugadores en caso de derrota
-        jugadores[0].puntos = 0;
-        jugadores[1].puntos = 0;
+    if (!letrasAdivinadas.includes("_")) { // El jugador ha ganado
+        titulo.textContent = `¡Ganaste! La palabra era: ${palabra}`;
+        contenedorTitulo.style.backgroundColor = "green";
+        jugadores[turnoActual].ganadas++; // Incrementa partidas ganadas para el jugador actual
+        actualizarEstadisticas(turnoActual); // Actualiza estadísticas
+        iniciarNuevaPartida(); // Inicia una nueva partida tras una victoria
+    } else if (intentosFallidos >= maxIntentos) { // El jugador ha perdido
+        titulo.textContent = `Perdiste. La palabra era: ${palabra}`;
+        contenedorTitulo.style.backgroundColor = "red";
+        iniciarNuevaPartida(); // Inicia una nueva partida tras una derrota
     } else {
-        titulo.style.color = "black"; // Mantiene el color del título en negro si la partida continúa
+        titulo.style.color = "black"; // Mantiene el color si la partida continúa
     }
 }
-
 
 
 // Configuración inicial de variables e imágenes para los intentos fallidos
@@ -240,11 +230,21 @@ function siguienteImagen() {
 
 
 
-// Función para reiniciar la partida y habilitar la entrada de palabra y botón de comenzar
+// Función para iniciar una nueva partida
+function iniciarNuevaPartida() {
+    // Esta función ahora solo reinicia la partida sin incrementar el total de partidas
+    reiniciarPartida(); // Llama a la función que reinicia los valores de la partida
+}
+
 function reiniciarPartida() {
+    // Llamando al id del elemento HTML para habilitar 
+    //la entrada de la palabra y el botón de comenzar partida
     document.getElementById("palabraSecreta").disabled = false;
     document.getElementById("comenzarPartida").disabled = false;
+
 }
+
+
 
 // Función para mostrar o ocultar la palabra secreta con iconos
 function mostrarPalabra() {
